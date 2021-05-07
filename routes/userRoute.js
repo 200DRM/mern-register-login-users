@@ -20,14 +20,14 @@ const UserModel = mongoose.model('users', {
   password: String
 });
 
-router.post('/register-user', function(req, res){
+router.post('/register-user', (req, res) => {
   const newUser = new UserModel({
     name: req.body.name,
     username: req.body.username,
     password: req.body.password
   });
 
-  newUser.save(function(err) {
+  newUser.save((err) => {
     if(err) {
       res.send('Something went wrong');
     } else {
@@ -36,7 +36,7 @@ router.post('/register-user', function(req, res){
   });
 });
 
-router.post('/login-user', function(req, res){
+router.post('/login-user', (req, res) => {
   UserModel.find({
     username: req.body.username,
     password: req.body.password
@@ -49,6 +49,16 @@ router.post('/login-user', function(req, res){
       } else {
         res.send('Login successful!');
       }
+    }
+  });
+});
+
+router.post('/get-users', (req, res) => {
+  UserModel.find({}, (err, documents) => {
+    if(err) {
+      res.send('Something went wrong');
+    } else {
+      res.send(documents);
     }
   });
 });
