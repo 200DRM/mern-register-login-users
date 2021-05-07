@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 const Register = () => {
@@ -14,6 +15,15 @@ const Register = () => {
       username,
       password
     };
+
+    axios.post('/api/user/register-user', user)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+
   };
 
   return (
