@@ -36,4 +36,21 @@ router.post('/register-user', function(req, res){
   });
 });
 
+router.post('/login-user', function(req, res){
+  UserModel.find({
+    username: req.body.username,
+    password: req.body.password
+  }, function(err, documents){
+    if(err) {
+      console.log('Something went wrong');
+    } else {
+      if(documents.length === 0) {
+        res.send('Login failed');
+      } else {
+        res.send('Login successful!');
+      }
+    }
+  });
+});
+
 module.exports = router;

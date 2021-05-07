@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 const Login = () => {
@@ -12,6 +13,15 @@ const Login = () => {
       username,
       password
     };
+
+    axios.post('/api/user/login-user', user)
+    .then(res => {
+      console.log(res);
+      alert(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
   };
 
   return (

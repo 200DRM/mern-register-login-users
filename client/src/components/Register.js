@@ -19,6 +19,7 @@ const Register = () => {
     axios.post('/api/user/register-user', user)
     .then(res => {
       console.log(res);
+      alert(res.data);
     })
     .catch(err => {
       console.log(err);
